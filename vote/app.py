@@ -4,7 +4,7 @@ import redis
 import uuid
 
 # ← THIS LINE MUST COME FIRST - BEFORE ANY @app.route
-app = Flask(_name_)
+app = Flask(__name__)
 
 cache = redis.Redis(host='redis', port=6379)
 
@@ -25,5 +25,5 @@ def index():
         return resp
     return render_template('index.html', option_a="Cats", option_b="Dogs")
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     app.run(host='0.0.0.0', port=80)
