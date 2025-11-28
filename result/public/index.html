@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voting Results</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 50px auto; text-align: center; }
+        .result { padding: 20px; margin: 20px; border-radius: 10px; font-size: 24px; }
+        .cats { background: #ffebee; color: #c62828; }
+        .dogs { background: #e3f2fd; color: #0277bd; }
+        .back-link { margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <h1>📊 Live Voting Results</h1>
+    <div id="results">
+        <div class="result cats">
+            🐱 Cats: <span id="cats">0</span>%
+        </div>
+        <div class="result dogs">
+            🐶 Dogs: <span id="dogs">0</span>%
+        </div>
+        <div>Total Votes: <span id="total">0</span></div>
+    </div>
+    <a href="http://localhost:8080" class="back-link" style="font-size:18px;">← Back to Vote</a>
+
+    <script>
+        const socket = io();
+        socket.on('votesUpdate', (data) => {
+            document.getElementById('cats').textContent = data.cats;
+            document.getElementById('dogs').textContent = data.dogs;
+            document.getElementById('total').textContent = data.total;
+        });
+    </script>
+</body>
+</html>
