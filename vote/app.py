@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, make_response
-import os
 import json
 import redis
 import uuid
 
+# ← THIS LINE MUST COME FIRST - BEFORE ANY @app.route
 app = Flask(_name_)
+
 cache = redis.Redis(host='redis', port=6379)
 
 @app.route('/', methods=['GET', 'POST'])
