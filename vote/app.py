@@ -4,7 +4,7 @@ import redis
 import uuid
 
 # ← THIS LINE MUST COME FIRST - BEFORE ANY @app.route
-app = Flask(_name_)
+app = Flask(__name__)
 
 cache = redis.Redis(host='redis', port=6379)
 
