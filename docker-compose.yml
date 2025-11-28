@@ -1,0 +1,45 @@
+version: "3"
+services:
+  vote:
+    build: ./vote
+    ports:
+      - "8080:80"
+    networks:
+      - front-tier
+      - back-tier
+
+  redis:
+    image: redis:alpine
+    networks:
+      - back-tier
+
+  worker:
+    build: ./worker
+    networks:
+      - back-tier
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "votesdb"
+    volumes:
+      - "db-data:/var/lib/postgresql/data"
+    networks:
+      - back-tier
+
+  result:
+    build: ./result
+    ports:
+      - "8081:80"
+    networks:
+      - front-tier
+      - back-tier
+
+networks:
+  front-tier: {}
+  back-tier: {}
+
+volumes:
+  db-data: {}
