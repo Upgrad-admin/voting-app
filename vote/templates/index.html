@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cats vs Dogs Vote</title>
+    <style>body{font-family:Arial; max-width:500px; margin:50px auto;}</style>
+</head>
+<body>
+    <h1>🐱 Cats vs 🐶 Dogs</h1>
+    <p>Vote for your favorite pet!</p>
+    <form method="POST">
+        <input type="radio" name="vote" value="Cats" id="cats">
+        <label for="cats">🐱 Cats</label><br><br>
+        <input type="radio" name="vote" value="Dogs" id="dogs">
+        <label for="dogs">🐶 Dogs</label><br><br>
+        <input type="submit" value="Vote Now!" style="padding:10px 20px; font-size:16px;">
+    </form>
+    {% if vote %}
+        <div style="margin-top:30px; padding:20px; background:#e8f5e8;">
+            <h3>✅ Thank you! You voted for {{ vote }}</h3>
+            <p><a href="/">Vote Again?</a> | <a href="http://localhost:8081">View Results</a></p>
+        </div>
+    {% endif %}
+</body>
+</html>
